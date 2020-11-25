@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.java.mapper.UserMapper">
+
+    <!--根据用户名和密码查询登录信息-->
+    <select id="selectCountUser" resultType="Integer">
+		SELECT COUNT(*) FROM admin_users WHERE username=#{username} AND password=#{password}
+	</select>
+
+    <!--根据用户名获取对应的权限-->
+    <select id="selectAuthorityByUsername" resultType="Map">
+        SELECT am.id,am.text,am.icon_cls iconCls,am.url,am.state
+        FROM admin_users au INNER JOIN admin_users_authority aua ON au.id=aua.user_id
+        INNER JOIN admin_menus am ON aua.menu_id=am.id
+        WHERE au.username=#{username} AND am.parent_id=#{id}
+    </select>
+</mapper>
