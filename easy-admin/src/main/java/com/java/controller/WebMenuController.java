@@ -65,9 +65,6 @@ public class WebMenuController {
     @RequestMapping("/alterWebMenu.do")
     @ResponseBody
     public boolean alterWebMenu(String title, String url, Long id) {
-        System.out.println("title=" + title);
-        System.out.println("url=" + url);
-        System.out.println("id=" + id);
         if (title == null | url == null) {
             return false;
         }
@@ -88,7 +85,7 @@ public class WebMenuController {
     @RequestMapping("/abandonWebMenu.do")
     @ResponseBody
     public boolean abandonWebMenu(String idStr) {
-        System.out.println(idStr);
+        idStr = idStr.substring(0, idStr.length() - 1);
         return webMenuService.removeWebMenu(idStr);
     }
 

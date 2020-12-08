@@ -53,7 +53,7 @@ public class WebMenuServiceImpl implements com.java.service.WebMenuService {
 
     @Override
     public boolean removeWebMenu(String idStr) {
-        return webMenuMapper.deleteWebMenu(idStr + "0") >= 1;
+        return webMenuMapper.deleteWebMenu(idStr) >= 1;
     }
 
 

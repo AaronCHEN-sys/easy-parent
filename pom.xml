@@ -11,6 +11,7 @@
         <module>easy-commons</module>
         <module>easy-pojo</module>
         <module>easy-admin</module>
+        <module>easy-web</module>
     </modules>
     <packaging>pom</packaging>
 

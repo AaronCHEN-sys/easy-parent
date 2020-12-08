@@ -103,6 +103,10 @@
                 iconCls: 'icon-add',
                 text: '添加',
                 handler: function () {
+
+                    $("#ff input[name=title]").val("");
+                    $("#ff input[name=url]").val("");
+
                     $(".c1").linkbutton({
                         iconCls: 'icon-ok'
                     });
@@ -128,8 +132,8 @@
                         $.messager.alert('提示', '请选择要编辑的记录！');
                     } else if (length == 1) {
                         var row = $("#dg").datagrid("getSelected");
-                        $("input[name=title]").val(row.title);
-                        $("input[name=url]").val(row.url);
+                        $("#ff2 input[name=title]").val(row.title);
+                        $("#ff2 input[name=url]").val(row.url);
                         $(".c11").linkbutton({
                             iconCls: 'icon-ok'
                         });

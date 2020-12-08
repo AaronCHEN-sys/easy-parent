@@ -8,7 +8,8 @@
     <!--查询所有横向菜单-->
     <select id="selectWebMenu" resultType="Map">
 		SELECT id,title,url,DATE_FORMAT(last_modify_time,'%Y-%m-%d %H:%i:%s') last_modify_time
-		FROM web_menu where menu_type='1' LIMIT #{startIndex},#{pageSize}
+		FROM web_menu where menu_type='1' ORDER BY last_modify_time ASC
+		LIMIT #{startIndex},#{pageSize}
 	</select>
 
     <!--查询所有横向菜单的总数目-->

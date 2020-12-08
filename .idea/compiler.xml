@@ -9,6 +9,7 @@
         <module name="easy-admin" />
         <module name="easy-commons" />
         <module name="easy-pojo" />
+        <module name="easy-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -16,6 +17,7 @@
       <module name="easy-commons" target="1.8" />
       <module name="easy-parent" target="1.8" />
       <module name="easy-pojo" target="1.8" />
+      <module name="easy-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
