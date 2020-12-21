@@ -45,7 +45,6 @@ public class FrontWebMenuServiceImpl implements FrontWebMenuService {
                 return (List<Map<String, Object>>) horizontalWebMenu;
             }
         } catch (Exception e) {
-            e.printStackTrace();
             System.out.println("FrontWebMenuServiceImpl----------未开启Redis");
             return frontWebMenuMapper.selectHorizontalWebMenu("1");
 

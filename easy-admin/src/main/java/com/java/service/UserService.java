@@ -1,5 +1,7 @@
 package com.java.service;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +30,9 @@ public interface UserService {
      * @param id
      * @return
      */
+
+    @Transactional(readOnly = false)
     List<Map<String, Object>> findAuthorityByUsername(String username, Long id);
+
 
 }

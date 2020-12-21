@@ -16,5 +16,13 @@
         FROM admin_users au INNER JOIN admin_users_authority aua ON au.id=aua.user_id
         INNER JOIN admin_menus am ON aua.menu_id=am.id
         WHERE au.username=#{username} AND am.parent_id=#{id}
+        <if test="flag == 0">
+            AND am.flag='0'
+        </if>
+    </select>
+
+    <!--根据用户名查询是否是超级管理员-->
+    <select id="selectAdminUser" resultType="String">
+        SELECT root FROM admin_users WHERE username=#{username}
     </select>
 </mapper>

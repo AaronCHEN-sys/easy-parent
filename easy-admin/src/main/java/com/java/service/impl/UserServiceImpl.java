@@ -5,6 +5,7 @@ import com.java.service.UserService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -27,9 +28,11 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectCountUser(username, password) >= 1;
     }
 
+    @Transactional(readOnly = false)
     @Override
     public List<Map<String, Object>> findAuthorityByUsername(String username, Long id) {
-        return userMapper.selectAuthorityByUsername(username,id);
+        String flag = userMapper.selectAdminUser(username);
+        return userMapper.selectAuthorityByUsername(username, id, flag);
     }
 
 

@@ -4,9 +4,12 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/easy-admin/easy-admin.iml" filepath="$PROJECT_DIR$/easy-admin/easy-admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/easy-commons/easy-commons.iml" filepath="$PROJECT_DIR$/easy-commons/easy-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/easy-eureka1/easy-eureka1.iml" filepath="$PROJECT_DIR$/easy-eureka1/easy-eureka1.iml" />
       <module fileurl="file://$PROJECT_DIR$/easy-parent.iml" filepath="$PROJECT_DIR$/easy-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/easy-pojo/easy-pojo.iml" filepath="$PROJECT_DIR$/easy-pojo/easy-pojo.iml" />
       <module fileurl="file://$PROJECT_DIR$/easy-web/easy-web.iml" filepath="$PROJECT_DIR$/easy-web/easy-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/easy-zuul/easy-zuul.iml" filepath="$PROJECT_DIR$/easy-zuul/easy-zuul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/easyeureka2/easyeureka2.iml" filepath="$PROJECT_DIR$/easyeureka2/easyeureka2.iml" />
     </modules>
   </component>
 </project>

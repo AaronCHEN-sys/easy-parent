@@ -38,7 +38,6 @@
             $('#tt').tree({
                 lines: true,
                 onClick: function (node) {
-                    console.log(node);
                     var flag = $("#tb").tabs('exists', node.text);
                     if (!flag && node.url != null) {//选项卡不存在
                         $("#tb").tabs('add', {

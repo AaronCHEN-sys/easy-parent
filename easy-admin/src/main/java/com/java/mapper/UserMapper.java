@@ -27,7 +27,17 @@ public interface UserMapper {
      *
      * @param username 用户名
      * @param id
+     * @param flag     是否是超级管理员 1是
+     *                 0不是
      * @return
      */
-    List<Map<String, Object>> selectAuthorityByUsername(@Param("username") String username, @Param("id") Long id);
+    List<Map<String, Object>> selectAuthorityByUsername(@Param("username") String username, @Param("id") Long id, @Param("flag") String flag);
+
+    /**
+     * 根据用户名查询是否是超级管理员
+     *
+     * @param username 用户名
+     * @return
+     */
+    String selectAdminUser(@Param("username") String username);
 }
