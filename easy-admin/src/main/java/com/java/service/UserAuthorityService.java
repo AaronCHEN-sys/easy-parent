@@ -42,5 +42,5 @@ public interface UserAuthorityService {
      * @throws Exception
      */
     @Transactional(readOnly = false)
-    boolean insertSystemUser(String username, String password, String menuIds) throws Exception;
+    boolean saveSystemUser(String username, String password, String menuIds) throws Exception;
 }

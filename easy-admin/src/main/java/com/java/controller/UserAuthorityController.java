@@ -52,18 +52,18 @@ public class UserAuthorityController {
 
 
     /**
+     * 添加系统用户并且授权
+     *
      * @param username
      * @param password
      * @param menuIds
      * @return
+     * @throws Exception
      */
     @RequestMapping("/addSystemUser.do")
     @ResponseBody
-    public boolean addSystemUser(String username, String password, String menuIds) {
-        System.out.println("username=" + username);
-        System.out.println("password=" + password);
-        System.out.println("menuIds=" + menuIds);
-        return false;
+    public boolean addSystemUser(String username, String password, String menuIds) throws Exception {
+        return userAuthorityService.saveSystemUser(username, password, menuIds);
     }
 
 }

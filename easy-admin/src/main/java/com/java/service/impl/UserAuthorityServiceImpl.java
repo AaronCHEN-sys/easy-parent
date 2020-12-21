@@ -40,7 +40,7 @@ public class UserAuthorityServiceImpl implements UserAuthorityService {
 
     @Transactional(readOnly = false)
     @Override
-    public boolean insertSystemUser(String username, String password, String menuIds) throws Exception {
+    public boolean saveSystemUser(String username, String password, String menuIds) throws Exception {
         Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("username", username);
         parameterMap.put("password", MD5Tool.finalMD5(password));
@@ -54,8 +54,8 @@ public class UserAuthorityServiceImpl implements UserAuthorityService {
                 if (j <= 0) {
                     return false;
                 }
-                return true;
             }
+            return true;
         }
         return false;
     }

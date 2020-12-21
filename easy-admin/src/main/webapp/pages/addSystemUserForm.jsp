@@ -67,7 +67,7 @@
             var cks = $('#getAuthorityTree').tree('getChecked', ['indeterminate', 'checked']);
             var menuIds = "";
             for (var i in cks) {
-                menuIds += cks[i] + ",";
+                menuIds += cks[i].id + ",";
             }
             $.ajax({
                 url: "<%=basePath %>/userAuthority/addSystemUser.do",
@@ -81,9 +81,9 @@
                 success: function (rs) {
                     if (rs) {//添加成功
                         //1、关闭添加前台菜单窗口
-                        $("#frontWin").window('close');
+                        $("#addSystemUser").window('close');
                         //2、刷新表格
-                        $("#dg").datagrid('reload')
+                        $("#getSystemUser").datagrid('reload')
                         //3、提示添加成功
                         $.messager.show({
                             title: "提示",
