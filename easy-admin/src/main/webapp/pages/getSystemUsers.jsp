@@ -20,29 +20,15 @@
 
 <%--编辑系统用户菜单窗口--%>
 <div id="editSystemUser">
-    <center style="padding-top: 30px">
-        <form id="ff2" method="post" action="javascript:void(0)">
-            <table cellpadding="5">
-                <tr>
-                    <td>菜单名:</td>
-                    <td><input class="a11" type="text" name="title"></td>
-                </tr>
-                <tr>
-                    <td>跳转链接:</td>
-                    <td><input class="a22" type="text" name="url"></td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="center">
-                        <a href="#" class="c11">编辑</a>
-                        <a href="#" class="c22" id="rs2">重置</a>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </center>
+
 </div>
 
 <script type="text/javascript">
+    function editSystemUserAndAuthority(id) {
+        // 刷新一个新的URL内容
+        $('#editSystemUser').panel('open').panel('refresh', '<%=basePath %>/pages/editSystemUserForm.jsp?userId=' + id);
+    }
+
     $(function () {
         $('#getSystemUser').datagrid({
             url: '<%=basePath %>/userAuthority/getSystemUser.do',
@@ -51,7 +37,16 @@
                 [
                     {field: 'id', title: '主键', width: 150, align: 'center'},
                     {field: 'username', title: '账号', width: 150, align: 'center'},
-                    {field: 'root', title: '超级管理员', width: 150, align: 'center'},
+                    {
+                        field: 'root', title: '超级管理员', width: 150, align: 'center',
+                        formatter: function (value, row, index) {
+                            if (value == '1') {
+                                return '是';
+                            } else {
+                                return '否';
+                            }
+                        }
+                    },
                     {field: 'create_time', title: '创建时间', width: 150, align: 'center'},
                     {field: 'last_modify_time', title: '更新时间', width: 150, align: 'center'},
                     {
@@ -63,7 +58,7 @@
                             if (row.root == '1') {
                                 return '无操作';
                             } else {
-                                return '<a class="c1"></a>';
+                                return '<a class="c1" onclick="editSystemUserAndAuthority(' + row.id + ')"></a>';
                             }
                         }
                     }
@@ -186,6 +181,21 @@
             modal: true,
             closed: true,
             href: '<%=basePath %>/pages/addSystemUserForm.jsp'
+        });
+
+        //设置系统用户权限菜单窗口
+        $('#editSystemUser').window({
+            width: 600,
+            height: 400,
+            title: '编辑系统用户',
+            iconCls: 'icon-add',
+            draggable: true,
+            resizable: false,
+            minimizable: false,
+            collapsible: false,
+            maximizable: false,
+            modal: true,
+            closed: true
         });
     });
 </script>

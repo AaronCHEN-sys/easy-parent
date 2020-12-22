@@ -1,5 +1,6 @@
 package com.java.service;
 
+import com.java.pojo.admin.FirstMenu;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -43,4 +44,11 @@ public interface UserAuthorityService {
      */
     @Transactional(readOnly = false)
     boolean saveSystemUser(String username, String password, String menuIds) throws Exception;
+
+    /**
+     * 查询一级和二级权限
+     *
+     * @return
+     */
+    List<FirstMenu> findFirstAndSecondAuthorityRelation();
 }

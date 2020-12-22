@@ -5,6 +5,16 @@
 
 <mapper namespace="com.java.mapper.UserAuthorityMapper">
 
+    <resultMap id="firstMenu" type="com.java.pojo.admin.FirstMenu">
+        <result property="firstId" javaType="Long" column="firstId" jdbcType="BIGINT"></result>
+        <result property="firstText" javaType="String" column="firstText" jdbcType="VARCHAR"></result>
+        <collection property="secondMenuList" ofType="com.java.pojo.admin.SecondMenu">
+            <result property="secondId" javaType="Long" column="secondId" jdbcType="BIGINT"></result>
+            <result property="secondText" javaType="String" column="secondText" jdbcType="VARCHAR"></result>
+            <result property="url" javaType="String" column="url" jdbcType="VARCHAR"></result>
+        </collection>
+    </resultMap>
+
     <!--查询所有系统用户信息-->
     <select id="selectSystemUser" resultType="Map">
         SELECT id,username,root,DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') create_time,
@@ -31,4 +41,14 @@
     <insert id="insertUserAndAuthorityRelationship">
         INSERT INTO admin_users_authority SET user_id=#{userId},menu_id=#{menuId}
     </insert>
+
+    <!--查询一级和二级权限-->
+    <select id="selectFirstAndSecondAuthorityRelation" resultMap="firstMenu">
+        SELECT t1.id firstId,t1.text firstText,t2.id secondId,t2.text secondText,t2.url FROM
+        (SELECT * FROM admin_menus WHERE parent_id=0 AND flag='0') t1
+        INNER JOIN
+        (SELECT * FROM admin_menus WHERE parent_id!=0 AND flag='0') t2
+        ON t1.id=t2.parent_id
+    </select>
+
 </mapper>

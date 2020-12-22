@@ -13,6 +13,10 @@
     <script type="text/javascript" src="<%=basePath %>/static/js/easyui/jquery.min.js"></script>
     <script type="text/javascript" src="<%=basePath %>/static/js/easyui/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="<%=basePath %>/static/js/easyui/locale/easyui-lang-zh_CN.js"></script>
+
+    <%--引入vue--%>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 </head>
 <body class="easyui-layout">
 <div data-options="region:'north',title:'北丐',split:true" style="height:100px;"></div>

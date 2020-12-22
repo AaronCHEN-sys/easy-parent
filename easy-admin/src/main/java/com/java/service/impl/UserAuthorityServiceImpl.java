@@ -1,6 +1,7 @@
 package com.java.service.impl;
 
 import com.java.mapper.UserAuthorityMapper;
+import com.java.pojo.admin.FirstMenu;
 import com.java.service.UserAuthorityService;
 import com.java.utils.MD5Tool;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,11 @@ public class UserAuthorityServiceImpl implements UserAuthorityService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<FirstMenu> findFirstAndSecondAuthorityRelation() {
+        return userAuthorityMapper.selectFirstAndSecondAuthorityRelation();
     }
 
 }

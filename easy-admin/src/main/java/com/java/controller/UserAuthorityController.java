@@ -1,5 +1,6 @@
 package com.java.controller;
 
+import com.java.pojo.admin.FirstMenu;
 import com.java.service.UserAuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,6 +65,17 @@ public class UserAuthorityController {
     @ResponseBody
     public boolean addSystemUser(String username, String password, String menuIds) throws Exception {
         return userAuthorityService.saveSystemUser(username, password, menuIds);
+    }
+
+    /**
+     * 查询一级和二级权限
+     *
+     * @return
+     */
+    @RequestMapping("/getFirstAndSecondAuthorityRelation.do")
+    @ResponseBody
+    public List<FirstMenu> getFirstAndSecondAuthorityRelation() {
+        return userAuthorityService.findFirstAndSecondAuthorityRelation();
     }
 
 }

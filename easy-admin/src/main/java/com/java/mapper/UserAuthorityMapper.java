@@ -1,5 +1,6 @@
 package com.java.mapper;
 
+import com.java.pojo.admin.FirstMenu;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -57,4 +58,11 @@ public interface UserAuthorityMapper {
      * @return
      */
     int insertUserAndAuthorityRelationship(@Param("userId") Long userId, @Param("menuId") Long menuId);
+
+    /**
+     * 查询一级和二级权限
+     *
+     * @return
+     */
+    List<FirstMenu> selectFirstAndSecondAuthorityRelation();
 }

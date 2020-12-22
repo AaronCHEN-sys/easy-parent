@@ -76,6 +76,13 @@
             <artifactId>easy-commons</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!--引入自定义实体类-->
+        <dependency>
+            <groupId>com.java.easy-parent</groupId>
+            <artifactId>easy-pojo</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
