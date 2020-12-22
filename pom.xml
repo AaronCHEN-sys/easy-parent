@@ -36,6 +36,8 @@
         <mysql.version>5.1.32</mysql.version>
         <pageHelper.starter.version>1.2.3</pageHelper.starter.version>
         <fastDFS.client.version>1.26.1-RELEASE</fastDFS.client.version>
+        <fileupload.version>1.3.2</fileupload.version>
+        <commons.io.version>1.3.2</commons.io.version>
         <lombok.version>1.18.2</lombok.version>
         <redis.version>2.0.4.RELEASE</redis.version>
         <p6spy.version>2.1.3</p6spy.version>
@@ -73,18 +75,34 @@
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>${pageHelper.starter.version}</version>
             </dependency>
+
             <!-- mysql驱动 -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
             </dependency>
+
             <!--FastDFS客户端-->
             <dependency>
                 <groupId>com.github.tobato</groupId>
                 <artifactId>fastdfs-client</artifactId>
                 <version>${fastDFS.client.version}</version>
             </dependency>
+
+            <!--文件上传-->
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${fileupload.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.io.version}</version>
+            </dependency>
+
             <!--lombok-->
             <dependency>
                 <groupId>org.projectlombok</groupId>

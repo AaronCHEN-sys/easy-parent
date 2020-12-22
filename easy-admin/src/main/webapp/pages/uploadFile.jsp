@@ -11,7 +11,7 @@
 </head>
 <body>
 <center>
-    <form method="post" action="<%=basePath %>/uploadFile/uploadFile.do" enctype="multipart/form-data">
+    <form method="post" action="<%=basePath %>/uploadFile/uploadByFastDFS.do" enctype="multipart/form-data">
         <table>
             <tr>
                 <td>文件:</td>
