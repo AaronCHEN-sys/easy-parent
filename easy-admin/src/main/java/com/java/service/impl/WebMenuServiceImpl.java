@@ -1,7 +1,7 @@
 package com.java.service.impl;
 
 import com.java.mapper.WebMenuMapper;
-import org.apache.ibatis.annotations.Param;
+import com.java.service.WebMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +18,7 @@ import java.util.Map;
  * @see
  */
 @Service
-public class WebMenuServiceImpl implements com.java.service.WebMenuService {
+public class WebMenuServiceImpl implements WebMenuService {
 
     @Autowired
     private WebMenuMapper webMenuMapper;
@@ -56,5 +56,13 @@ public class WebMenuServiceImpl implements com.java.service.WebMenuService {
         return webMenuMapper.deleteWebMenu(idStr) >= 1;
     }
 
-
+    @Override
+    public Map<String, Object> findWebBanner(Integer startIndex, Integer pageSize) {
+        Map<String, Object> resultMap = new HashMap<>();
+        List<Map<String, Object>> rows = webMenuMapper.selectWebBanner(startIndex, pageSize);
+        int total = webMenuMapper.selectCountWebBanner();
+        resultMap.put("rows", rows);
+        resultMap.put("total", total);
+        return resultMap;
+    }
 }

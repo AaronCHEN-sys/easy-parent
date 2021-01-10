@@ -550,9 +550,7 @@
         <div class="banner">
             <div class="top_slide_wrap">
                 <ul class="slide_box bxslider">
-                    <li><img src="<%=basePath %>/static/images/ban1.jpg" width="740" height="401"/></li>
-                    <li><img src="<%=basePath %>/static/images/ban1.jpg" width="740" height="401"/></li>
-                    <li><img src="<%=basePath %>/static/images/ban1.jpg" width="740" height="401"/></li>
+                    <li v-for="banner in bannerList"><img v-bind:src="banner.image_url" width="740" height="401"/></li>
                 </ul>
                 <div class="op_btns clearfix">
                     <a href="#" class="op_btn op_prev"><span></span></a>
@@ -561,6 +559,19 @@
             </div>
         </div>
         <script type="text/javascript">
+
+            const bannerVue = new Vue({
+                el: ".banner",
+                data: {
+                    bannerList: []
+                },
+                mounted() {
+                    this.$http.post("http://localhost:8088//webBannerConsumer/getBannerByConsumer.do").then(
+                        function (rs) {
+                            this.bannerList = rs.body;
+                        });
+                }
+            });
             //var jq = jQuery.noConflict();
             (function () {
                 $(".bxslider").bxSlider({

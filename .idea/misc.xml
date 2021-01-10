@@ -2,6 +2,9 @@
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/easy-admin" />
+    <file type="web" url="file://$PROJECT_DIR$/easy-web-banner-consumer" />
+    <file type="web" url="file://$PROJECT_DIR$/easy-web-banner-provider1" />
+    <file type="web" url="file://$PROJECT_DIR$/easy-web-banner-provider2" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">

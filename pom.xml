@@ -15,6 +15,9 @@
         <module>easy-eureka1</module>
         <module>easyeureka2</module>
         <module>easy-zuul</module>
+        <module>easy-web-banner-provider2</module>
+        <module>easy-web-banner-consumer</module>
+        <module>easy-web-banner-provider1</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -45,6 +48,7 @@
         <zuul.version>2.0.0.RELEASE</zuul.version>
         <eureka.client.version>2.0.0.RELEASE</eureka.client.version>
         <actuator.version>2.0.0.RELEASE</actuator.version>
+        <ribbon.version>2.0.0.RELEASE</ribbon.version>
     </properties>
 
     <dependencyManagement>
@@ -144,6 +148,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-actuator</artifactId>
                 <version>${actuator.version}</version>
+            </dependency>
+
+            <!--引入ribbon负载均衡-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+                <version>${ribbon.version}</version>
             </dependency>
 
         </dependencies>

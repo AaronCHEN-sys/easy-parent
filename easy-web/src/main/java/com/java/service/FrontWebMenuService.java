@@ -19,3 +19,5 @@ public interface FrontWebMenuService {
      */
     List<Map<String, Object>> findHorizontalWebMenu();
 }
+
+

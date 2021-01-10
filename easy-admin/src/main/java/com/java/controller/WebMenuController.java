@@ -89,4 +89,18 @@ public class WebMenuController {
         return webMenuService.removeWebMenu(idStr);
     }
 
+    /**
+     * 查询前台轮播图
+     *
+     * @param page
+     * @param rows
+     * @return
+     */
+    @RequestMapping("/getWebBanner.do")
+    @ResponseBody
+    public Map<String, Object> getWebBanner(Integer page, Integer rows) {
+        int startIndex = (page - 1) * rows;
+        return webMenuService.findWebBanner(startIndex, rows);
+    }
+
 }

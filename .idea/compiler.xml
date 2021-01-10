@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -11,6 +12,9 @@
         <module name="easy-eureka1" />
         <module name="easy-pojo" />
         <module name="easy-web" />
+        <module name="easy-web-banner-consumer" />
+        <module name="easy-web-banner-provider1" />
+        <module name="easy-web-banner-provider2" />
         <module name="easy-zuul" />
         <module name="easyeureka2" />
       </profile>
@@ -22,6 +26,9 @@
       <module name="easy-parent" target="1.8" />
       <module name="easy-pojo" target="1.8" />
       <module name="easy-web" target="1.8" />
+      <module name="easy-web-banner-consumer" target="1.8" />
+      <module name="easy-web-banner-provider1" target="1.8" />
+      <module name="easy-web-banner-provider2" target="1.8" />
       <module name="easy-zuul" target="1.8" />
       <module name="easyeureka2" target="1.8" />
     </bytecodeTargetLevel>

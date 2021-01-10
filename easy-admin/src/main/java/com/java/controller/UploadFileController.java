@@ -22,7 +22,7 @@ import java.util.UUID;
  * @see
  */
 @Controller
-@RequestMapping("uploadFile")
+@RequestMapping("/uploadFile")
 public class UploadFileController {
 
     /**
@@ -60,25 +60,25 @@ public class UploadFileController {
      * @param uploadFile
      * @return
      */
-    @RequestMapping("/uploadByFastDFS.do")
+    @RequestMapping("/uploadFileByFastDFS.do")
     @ResponseBody
-    public Map<String, Object> uploadByFastDFS(MultipartFile uploadFile) {
+    public Map<String, Object> uploadFileByFastDFS(MultipartFile uploadFile) {
         Map<String, Object> resultMap = new HashMap<>();
         try {
-            FastDFSClient fastDFSClient = new FastDFSClient("classpath:/resources/fdfs_client.conf");
-            //获取文件的原始名称
+            FastDFSClient fastDFSClient = new FastDFSClient("classpath:resources/fdfs_client.conf");
+            //获取上传文件的源文件名
             String originalFilename = uploadFile.getOriginalFilename();
-            //获取文件类型
+            //获取后缀名
             String fileType = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
-            //将文件保存到fastDFS服务器,并且返回相对地址
+            //开始将文件保存到fastdfs服务器中去，并且返回相对地址  12\\23\\56\\17\\1.jpg
             String basePath = fastDFSClient.uploadFile(uploadFile.getBytes(), fileType);
             basePath = "http://192.168.25.133/" + basePath;
-            resultMap.put("error", 0);//0代表上传成功
+            resultMap.put("error", 0);//status代表的是状态码，0代表成功
             resultMap.put("url", basePath);
             return resultMap;
         } catch (Exception e) {
             e.printStackTrace();
-            resultMap.put("error", 1);//1代表上传失败
+            resultMap.put("error", 1);//1代表文件上传失败
             return resultMap;
         }
     }

@@ -56,4 +56,20 @@ public interface WebMenuMapper {
      */
     int deleteWebMenu(@Param("idStr") String idStr);
 
+    /**
+     * 查询前台轮播图
+     *
+     * @param startIndex
+     * @param pageSize
+     * @return
+     */
+    List<Map<String, Object>> selectWebBanner(@Param("startIndex") Integer startIndex, @Param("pageSize") Integer pageSize);
+
+    /**
+     * 查询所有前台轮播图的总数目
+     *
+     * @return
+     */
+    int selectCountWebBanner();
+
 }

@@ -25,4 +25,6 @@ public interface FrontWebMenuMapper {
      * @return
      */
     List<Map<String, Object>> selectHorizontalWebMenu(@Param("menuType") String menuType);
+
+
 }

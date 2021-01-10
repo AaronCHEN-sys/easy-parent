@@ -31,4 +31,16 @@
     <delete id="deleteWebMenu" parameterType="String">
         DELETE FROM web_menu WHERE id IN(${idStr})
     </delete>
+
+    <!--查询前台轮播图-->
+    <select id="selectWebBanner" resultType="Map">
+        SELECT id,image_url,href,remark,sort,DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s') update_time
+        FROM web_banner
+        LIMIT #{startIndex},#{pageSize}
+    </select>
+
+    <!--查询所有前台轮播图的总数目-->
+    <select id="selectCountWebBanner" resultType="Integer">
+        SELECT COUNT(*) FROM web_banner
+    </select>
 </mapper>

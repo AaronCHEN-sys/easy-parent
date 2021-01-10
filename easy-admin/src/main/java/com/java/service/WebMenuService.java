@@ -49,4 +49,14 @@ public interface WebMenuService {
      * @return
      */
     boolean removeWebMenu(String idStr);
+
+    /**
+     * 查询前台轮播图
+     *
+     * @param startIndex
+     * @param pageSize
+     * @return
+     */
+    Map<String, Object> findWebBanner(Integer startIndex, Integer pageSize);
 }
+

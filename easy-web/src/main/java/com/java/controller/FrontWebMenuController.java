@@ -33,4 +33,7 @@ public class FrontWebMenuController {
     public List<Map<String, Object>> getHorizontalWebMenu() {
         return frontWebMenuService.findHorizontalWebMenu();
     }
+
+
+
 }

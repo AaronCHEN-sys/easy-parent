@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="easy-web-banner-consumer:war">
+    <output-path>$PROJECT_DIR$/easy-web-banner-consumer/target</output-path>
+    <root id="archive" name="easy-web-banner-consumer.war">
+      <element id="artifact" artifact-name="easy-web-banner-consumer:war exploded" />
+    </root>
+  </artifact>
+</component>

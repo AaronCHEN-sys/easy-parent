@@ -17,6 +17,11 @@
     <%--引入vue--%>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+
+    <%--引入kindeditor--%>
+    <script type="text/javascript" src="<%=basePath %>/static/js/kindeditor-5.1.10/kindeditor.js"></script>
+    <script type="text/javascript" src="<%=basePath %>/static/js/kindeditor-5.1.10/lang/zh_CN.js"></script>
+
 </head>
 <body class="easyui-layout">
 <div data-options="region:'north',title:'北丐',split:true" style="height:100px;"></div>
