@@ -51,13 +51,4 @@
         ON t1.id=t2.parent_id
     </select>
 
-    <!--查询一级和二级权限-->
-    <select id="selectFirstAndSecondAuthorityRelation" resultMap="firstMenu">
-        SELECT t1.id firstId,t1.text firstText,t2.id secondId,t2.text secondText,t2.url FROM
-        (SELECT * FROM admin_menus WHERE parent_id=0 AND flag='0') t1
-        INNER JOIN
-        (SELECT * FROM admin_menus WHERE parent_id!=0 AND flag='0') t2
-        ON t1.id=t2.parent_id
-    </select>
-
 </mapper>
