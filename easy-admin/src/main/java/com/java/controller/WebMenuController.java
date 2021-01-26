@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -101,6 +102,30 @@ public class WebMenuController {
     public Map<String, Object> getWebBanner(Integer page, Integer rows) {
         int startIndex = (page - 1) * rows;
         return webMenuService.findWebBanner(startIndex, rows);
+    }
+
+    /**
+     * 添加前台轮播图
+     *
+     * @param imgUrl
+     * @param href
+     * @param remark
+     * @param sort
+     * @return
+     */
+    @RequestMapping("/addWebBanner.do")
+    public boolean addWebBanner(String imgUrl, String href, String remark, Integer sort) {
+        System.out.println(imgUrl);
+        System.out.println(href);
+        System.out.println(remark);
+        System.out.println(sort);
+
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("imgUrl", imgUrl);
+        paramMap.put("href", href);
+        paramMap.put("remark", remark);
+        paramMap.put("sort", sort);
+        return webMenuService.saveWebBanner(paramMap);
     }
 
 }

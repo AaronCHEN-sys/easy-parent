@@ -65,4 +65,10 @@ public class WebMenuServiceImpl implements WebMenuService {
         resultMap.put("total", total);
         return resultMap;
     }
+
+    @Override
+    public boolean saveWebBanner(Map<String, Object> paramMap) {
+        return webMenuMapper.insertWebBanner(paramMap) == 1;
+    }
+
 }

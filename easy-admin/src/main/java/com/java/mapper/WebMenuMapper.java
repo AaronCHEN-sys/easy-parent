@@ -72,4 +72,12 @@ public interface WebMenuMapper {
      */
     int selectCountWebBanner();
 
+    /**
+     * 添加前台轮播图
+     *
+     * @param paramMap
+     * @return
+     */
+    int insertWebBanner(Map<String, Object> paramMap);
+
 }

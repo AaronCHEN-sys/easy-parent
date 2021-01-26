@@ -10,19 +10,20 @@
         <module name="easy-admin" />
         <module name="easy-commons" />
         <module name="easy-eureka1" />
+        <module name="easy-eureka2" />
         <module name="easy-pojo" />
         <module name="easy-web" />
         <module name="easy-web-banner-consumer" />
         <module name="easy-web-banner-provider1" />
         <module name="easy-web-banner-provider2" />
         <module name="easy-zuul" />
-        <module name="easyeureka2" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="easy-admin" target="1.8" />
       <module name="easy-commons" target="1.8" />
       <module name="easy-eureka1" target="1.8" />
+      <module name="easy-eureka2" target="1.8" />
       <module name="easy-parent" target="1.8" />
       <module name="easy-pojo" target="1.8" />
       <module name="easy-web" target="1.8" />

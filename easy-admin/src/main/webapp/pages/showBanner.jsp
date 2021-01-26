@@ -22,14 +22,14 @@
                 <tr>
                     <td>商品图片</td>
                     <td>
-                        <input type="button" id="onPicUpload" value="图片上传" />
-                        <input type="hidden" name="imgUrl" value="aaa" />
+                        <input type="button" id="onPicUpload" value="图片上传"/>
+                        <input type="hidden" name="imgUrl" value=""/>
                     </td>
                 </tr>
                 <tr>
                     <td>跳转链接</td>
                     <td>
-                        <input type="text" name="href" />
+                        <input type="text" name="href"/>
                     </td>
                 </tr>
                 <tr>
@@ -64,13 +64,33 @@
 
 </div>--%>
 <script type="text/javascript">
+
+
     $(function () {
+
+        //添加轮播单击事件
+        $("#addBanner input[type=submit]").click(function () {
+            $.ajax({
+                url: "<%=basePath %>/web/addWebBanner.do",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "imgUrl": $("#addBanner input[name=imgUrl]").val(),
+                    "href": $("#addBanner input[name=href]").val(),
+                    "remark": $("#addBanner textarea[name=remark]").val(),
+                    "sort": $("#addBanner select[name=sort]").val()
+                },
+                success: function (rs) {
+                    console.log(rs);
+                }
+            });
+        });
+
         var editor;
         window.editor = KindEditor.create('textarea[name="description"]', {
             allowFileManager: true,
             height: "200px" //编辑器的高度为100px
         });
-
         /*图片上传*/
         $("#onPicUpload").click(function () {
             var _self = $(this);
@@ -85,7 +105,9 @@
                 this.plugin.imageDialog({
                     showRemote: false,
                     clickFn: function (url, title, width, height, border, align) {
-                        $("input[name=image_url]").val(url);
+                        console.log("url=" + url);
+                        //url=http://192.168.25.133/group1/M00/00/04/wKgZhVxozjWACYeZAACmK0sntbI152.jpg
+                        $("#addBanner input[name=imgUrl]").val(url);
                         $("#onPicUpload").after("<a href='" + url + "' target='_blank'><img src='" + url + "' width='80' height='50'/></a>");
                         $("#onPicUpload").remove();
                         this.hideDialog();
@@ -93,6 +115,29 @@
                 });
             });
         });
+
+        <%--/*图片上传*/--%>
+        <%--$("#onPicUpload").click(function () {--%>
+        <%--var _self = $(this);--%>
+        <%--KindEditor.editor({--%>
+        <%--//指定上传文件参数名称--%>
+        <%--filePostName: "uploadFile",--%>
+        <%--//指定上传文件请求的url。--%>
+        <%--uploadJson: '<%=basePath %>/uploadFile/uploadFileByFastDFS.do',--%>
+        <%--//上传类型，分别为image、flash、media、file--%>
+        <%--dir: "image"--%>
+        <%--}).loadPlugin('image', function () {--%>
+        <%--this.plugin.imageDialog({--%>
+        <%--showRemote: false,--%>
+        <%--clickFn: function (url, title, width, height, border, align) {--%>
+        <%--$("#addBanner input[name=imgUrl]").val(url);--%>
+        <%--$("#onPicUpload").after("<a href='" + url + "' target='_blank'><img src='" + url + "' width='80' height='50'/></a>");--%>
+        <%--$("#onPicUpload").remove();--%>
+        <%--this.hideDialog();--%>
+        <%--}--%>
+        <%--});--%>
+        <%--});--%>
+        <%--});--%>
 
 
         $('#getBanner').datagrid({

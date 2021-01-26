@@ -75,6 +75,7 @@ public class UploadFileController {
             basePath = "http://192.168.25.133/" + basePath;
             resultMap.put("error", 0);//status代表的是状态码，0代表成功
             resultMap.put("url", basePath);
+            System.out.println("basePath=" + basePath);
             return resultMap;
         } catch (Exception e) {
             e.printStackTrace();

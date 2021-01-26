@@ -58,5 +58,13 @@ public interface WebMenuService {
      * @return
      */
     Map<String, Object> findWebBanner(Integer startIndex, Integer pageSize);
+
+    /**
+     * 添加前台轮播图
+     *
+     * @param paramMap
+     * @return
+     */
+    boolean saveWebBanner(Map<String, Object> paramMap);
 }
 

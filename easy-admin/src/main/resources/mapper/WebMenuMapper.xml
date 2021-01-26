@@ -43,4 +43,9 @@
     <select id="selectCountWebBanner" resultType="Integer">
         SELECT COUNT(*) FROM web_banner
     </select>
+
+    <!--添加前台轮播图-->
+    <insert id="insertWebBanner">
+        INSERT INTO web_banner VALUES(NULL,'image_url','href','remark',1,NOW())
+    </insert>
 </mapper>

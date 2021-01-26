@@ -13,11 +13,11 @@
         <module>easy-admin</module>
         <module>easy-web</module>
         <module>easy-eureka1</module>
-        <module>easyeureka2</module>
         <module>easy-zuul</module>
         <module>easy-web-banner-provider2</module>
         <module>easy-web-banner-consumer</module>
         <module>easy-web-banner-provider1</module>
+        <module>easy-eureka2</module>
     </modules>
     <packaging>pom</packaging>
 
