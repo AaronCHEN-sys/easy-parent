@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="easy-web-seckill-provider2:war">
+    <output-path>$PROJECT_DIR$/easy-web-seckill-provider2/target</output-path>
+    <root id="archive" name="easy-web-seckill-provider2.war">
+      <element id="artifact" artifact-name="easy-web-seckill-provider2:war exploded" />
+    </root>
+  </artifact>
+</component>

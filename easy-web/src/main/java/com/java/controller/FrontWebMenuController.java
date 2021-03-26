@@ -1,14 +1,25 @@
 package com.java.controller;
 
 import com.java.service.FrontWebMenuService;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.xml.soap.Detail;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,8 +36,23 @@ import java.util.Map;
 @RequestMapping("/frontWebMenu")
 public class FrontWebMenuController {
 
+    //注入负载均衡的工具类
+    @Bean
+    //开启负载均衡
+    @LoadBalanced
+    public RestTemplate getRestTemplate() {
+        return new RestTemplate();
+    }
+
     @Autowired
     private FrontWebMenuService frontWebMenuService;
+
+    @Autowired
+    private Configuration configuration;
+
+    @Autowired
+    private RestTemplate restTemplate;
+
 
     /**
      * 查询前8条前台横向菜单
@@ -74,10 +100,42 @@ public class FrontWebMenuController {
         return modelAndView;
     }
 
-    @RequestMapping("/toProductDetailByFTL.do/{productId}")
-    public void toProductDetail(@PathVariable(name = "productId") Long productId) {
 
-
+    /**
+     * 通过FreeMaker动态生成HTML文件
+     *
+     * @return
+     * @throws IOException
+     * @throws TemplateException
+     */
+    @RequestMapping("/toStaticProductDetail.do")
+    @ResponseBody
+    public void toStaticProductDetail() throws IOException, TemplateException {
+        List<Map<String, Object>> goodsDetailList = frontWebMenuService.findAllGoodsDetail();
+        for (Map<String, Object> goodsDetailMap : goodsDetailList) {
+            //FreeMaker取出数据后, 生成静态的HTML页面(productId.html)
+            // 1.获取指定的FreeMaker模板对象
+            Template template = configuration.getTemplate("Product.ftl");
+            File file = new File("D:\\ProgramFiles\\freemaker\\easy_buy\\details\\" + goodsDetailMap.get("goodsId") + ".html");
+            FileWriter fileWriter = new FileWriter(file);
+            template.process(goodsDetailMap, fileWriter);
+            fileWriter.close();
+        }
     }
 
+    /**
+     * @param model
+     * @return
+     */
+    @RequestMapping("/toIndex.do")
+    public String toIndex(Model model) {
+        //注意实现负载均衡
+        List<Map<String, Object>> goodsDetailList = frontWebMenuService.findAllGoodsDetail();
+        //封装商品列表
+        model.addAttribute("goodsDetailList", goodsDetailList);
+        //封装轮播图片
+        List<Map<String, Object>> bannerList = restTemplate.getForObject("http://easy-web-banner-provider/getWebBanner.do", List.class);
+        model.addAttribute("bannerList", bannerList);
+        return "/pages/Index.jsp";
+    }
 }

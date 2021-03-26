@@ -10,6 +10,52 @@
         ORDER BY last_modify_time ASC LIMIT 8
 	</select>
 
+    <!--查询所有商品详细信息, 不包含图片地址信息-->
+    <select id="selectAllProductDetail" resultType="Map">
+        SELECT wgd.id goodsId,wgd.title,wgd.sub_title,wgd.price,wgd.color,wgd.model,wgd.remaining,
+        wgd.href,DATE_FORMAT(wgd.last_update_time,'%Y-%m-%d %H:%i:%s') last_update_time,
+        wgt.id typeId,wgt.type_name,DATE_FORMAT(wgt.update_time,'%Y-%m-%d %H:%i:%s') update_time
+		FROM web_goods_details wgd
+		INNER JOIN web_goods_type wgt ON wgd.type_id=wgt.id
+    </select>
 
+    <!--根据商品主键id获取对应图片地址信息-->
+    <select id="selectImageUrlByGoodsId" resultType="String">
+        SELECT wgi.image_url FROM  web_goods_images wgi
+		INNER JOIN web_goods_details wgd ON wgi.goods_id=wgd.id
+		WHERE wgd.id=#{goodsId}
+    </select>
+
+    <!--查询五分钟之内被修改过的商品详情-->
+    <select id="selectAllProductDetailUpdated" resultType="Map">
+        SELECT wgd.id goodsId,wgd.title,wgd.sub_title,wgd.price,wgd.color,wgd.model,wgd.remaining,
+        wgd.href,DATE_FORMAT(wgd.last_update_time,'%Y-%m-%d %H:%i:%s') last_update_time,
+        wgt.id typeId,wgt.type_name,DATE_FORMAT(wgt.update_time,'%Y-%m-%d %H:%i:%s') update_time
+		FROM web_goods_details wgd
+		INNER JOIN web_goods_type wgt ON wgd.type_id=wgt.id
+		WHERE wgd.last_update_time>=NOW()-INTERVAL 5 MINUTE
+    </select>
+
+    <!--查询即将开始秒杀的商品的秒杀信息-->
+    <select id="selectSeckillGoodsInformation" resultType="Map">
+        SELECT id,goods_id,seckill_number,seckill_price,
+        DATE_FORMAT(start_time,'%Y-%m-%d %H:%i:%s') start_time,DATE_FORMAT(end_time,'%Y-%m-%d %H:%i:%s') end_time,
+        seckill_status,seckill_href
+        FROM web_goods_seckill
+        WHERE start_time&lt;= NOW() AND NOW()&lt;= end_time AND seckill_status='0'
+    </select>
+
+    <!--根据秒杀主键id更新秒杀商品的信息-->
+    <update id="updateSeckillGoodsStatusById">
+    UPDATE web_goods_seckill SET seckill_status=#{seckillStatus} WHERE id=#{seckillId}
+    </update>
+
+    <!--查询寂静结束秒杀的商品信息-->
+    <select id="selectSeckilledGoods" resultType="Map">
+        SELECT id,goods_id,seckill_number,seckill_price,
+        DATE_FORMAT(start_time,'%Y-%m-%d %H:%i:%s') start_time,DATE_FORMAT(end_time,'%Y-%m-%d %H:%i:%s') end_time,
+        seckill_status,seckill_href
+        FROM web_goods_seckill WHERE end_time &lt;=NOW() AND seckill_status='1'
+    </select>
 
 </mapper>

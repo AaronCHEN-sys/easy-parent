@@ -18,6 +18,9 @@
         <module>easy-web-banner-consumer</module>
         <module>easy-web-banner-provider1</module>
         <module>easy-eureka2</module>
+        <module>easy-web-seckill-provider1</module>
+        <module>easy-web-seckill-provider2</module>
+        <module>easy-web-seckill-consumer</module>
     </modules>
     <packaging>pom</packaging>
 

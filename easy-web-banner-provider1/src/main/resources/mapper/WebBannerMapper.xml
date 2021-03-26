@@ -7,6 +7,6 @@
 
     <!--查询前台轮播图-->
     <select id="selectWebBanner" resultType="Map">
-		SELECT id,image_url,href,remark,sort,update_time FROM web_banner ORDER BY sort ASC
+		SELECT id,image_url,href,remark,sort,DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s') update_time FROM web_banner ORDER BY sort ASC
 	</select>
 </mapper>

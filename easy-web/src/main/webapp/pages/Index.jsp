@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
@@ -550,7 +551,11 @@
         <div class="banner">
             <div class="top_slide_wrap">
                 <ul class="slide_box bxslider">
-                    <li v-for="banner in bannerList"><img v-bind:src="banner.image_url" width="740" height="401"/></li>
+                    <c:forEach items="${bannerList}" var="bannerMap">
+                        <li>
+                            <img src="${bannerMap.image_url}" width="740" height="401"/>
+                        </li>
+                    </c:forEach>
                 </ul>
                 <div class="op_btns clearfix">
                     <a href="#" class="op_btn op_prev"><span></span></a>
@@ -559,19 +564,6 @@
             </div>
         </div>
         <script type="text/javascript">
-
-            const bannerVue = new Vue({
-                el: ".banner",
-                data: {
-                    bannerList: []
-                },
-                mounted() {
-                    this.$http.post("http://localhost:8088//webBannerConsumer/getBannerByConsumer.do").then(
-                        function (rs) {
-                            this.bannerList = rs.body;
-                        });
-                }
-            });
             //var jq = jQuery.noConflict();
             (function () {
                 $(".bxslider").bxSlider({
@@ -637,82 +629,29 @@
                     <div id="block">
                         <div id="botton-scroll">
                             <ul class="featureUL">
-                                <li class="featureBox">
-                                    <div class="box">
-                                        <div class="h_icon"><img src="<%=basePath %>/static/images/hot.png" width="50"
-                                                                 height="50"/></div>
-                                        <div class="imgbg">
-                                            <a href="#"><img src="<%=basePath %>/static/images/hot1.jpg" width="160"
-                                                             height="136"/></a>
-                                        </div>
-                                        <div class="name">
-                                            <a href="#">
-                                                <h2>德国进口</h2>
-                                                德亚全脂纯牛奶200ml*48盒
-                                            </a>
-                                        </div>
-                                        <div class="price">
-                                            <font>￥<span>189</span></font> &nbsp; 26R
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="featureBox">
-                                    <div class="box">
-                                        <div class="h_icon"><img src="<%=basePath %>/static/images/hot.png" width="50"
-                                                                 height="50"/></div>
-                                        <div class="imgbg">
-                                            <a href="#"><img src="<%=basePath %>/static/images/hot2.jpg" width="160"
-                                                             height="136"/></a>
-                                        </div>
-                                        <div class="name">
-                                            <a href="#">
-                                                <h2>iphone 6S</h2>
-                                                Apple/苹果 iPhone 6s Plus公开版
-                                            </a>
-                                        </div>
-                                        <div class="price">
-                                            <font>￥<span>5288</span></font> &nbsp; 25R
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="featureBox">
-                                    <div class="box">
-                                        <div class="h_icon"><img src="<%=basePath %>/static/images/hot.png" width="50"
-                                                                 height="50"/></div>
-                                        <div class="imgbg">
-                                            <a href="#"><img src="<%=basePath %>/static/images/hot3.jpg" width="160"
-                                                             height="136"/></a>
-                                        </div>
-                                        <div class="name">
-                                            <a href="#">
-                                                <h2>倩碧特惠组合套装</h2>
-                                                倩碧补水组合套装8折促销
-                                            </a>
-                                        </div>
-                                        <div class="price">
-                                            <font>￥<span>368</span></font> &nbsp; 18R
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="featureBox">
-                                    <div class="box">
-                                        <div class="h_icon"><img src="<%=basePath %>/static/images/hot.png" width="50"
-                                                                 height="50"/></div>
-                                        <div class="imgbg">
-                                            <a href="#"><img src="<%=basePath %>/static/images/hot4.jpg" width="160"
-                                                             height="136"/></a>
-                                        </div>
-                                        <div class="name">
-                                            <a href="#">
-                                                <h2>品利特级橄榄油</h2>
-                                                750ml*4瓶装组合 西班牙原装进口
-                                            </a>
-                                        </div>
-                                        <div class="price">
-                                            <font>￥<span>280</span></font> &nbsp; 30R
-                                        </div>
-                                    </div>
-                                </li>
+                                <c:forEach items="${goodsDetailList}" var="goodsDetail">
+                                    <li class="featureBox">
+                                        <a href="http://localhost:8888/${goodsDetail.href}" target="_blank">
+                                            <div class="box">
+                                                <div class="h_icon">
+                                                    <img src="<%=basePath %>/static/images/hot.png" width="50"
+                                                         height="50"/>
+                                                </div>
+                                                <div class="imgbg">
+                                                    <img src="${goodsDetail.imageUrlList[0]}" width="160"
+                                                         height="136"/>
+                                                </div>
+                                                <div class="name">
+                                                    <h2>${goodsDetail.title}</h2>
+                                                        ${goodsDetail.sub_title}
+                                                </div>
+                                                <div class="price">
+                                                    <font>￥<span>${goodsDetail.price}</span></font> &nbsp;
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </c:forEach>
                             </ul>
                         </div>
                     </div>

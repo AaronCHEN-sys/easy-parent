@@ -18,6 +18,30 @@ public interface FrontWebMenuService {
      * @return
      */
     List<Map<String, Object>> findHorizontalWebMenu();
+
+    /**
+     * 查询所有商品详细信息
+     *
+     * @return
+     */
+    List<Map<String, Object>> findAllGoodsDetail();
+
+    /**
+     * 查询五分钟之内被修改过的商品详情, 不包含图片地址信息
+     *
+     * @return
+     */
+    List<Map<String, Object>> findAllProductDetailUpdated();
+
+    /**
+     * 开始秒杀
+     */
+    void processSeckill();
+
+    /**
+     * 秒杀结束
+     */
+    void processSeckillwhenCompleted();
 }
 
 

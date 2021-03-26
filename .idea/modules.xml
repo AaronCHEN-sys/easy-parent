@@ -12,6 +12,9 @@
       <module fileurl="file://$PROJECT_DIR$/easy-web-banner-consumer/easy-web-banner-consumer.iml" filepath="$PROJECT_DIR$/easy-web-banner-consumer/easy-web-banner-consumer.iml" />
       <module fileurl="file://$PROJECT_DIR$/easy-web-banner-provider1/easy-web-banner-provider1.iml" filepath="$PROJECT_DIR$/easy-web-banner-provider1/easy-web-banner-provider1.iml" />
       <module fileurl="file://$PROJECT_DIR$/easy-web-banner-provider2/easy-web-banner-provider2.iml" filepath="$PROJECT_DIR$/easy-web-banner-provider2/easy-web-banner-provider2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/easy-web-seckill-consumer/easy-web-seckill-consumer.iml" filepath="$PROJECT_DIR$/easy-web-seckill-consumer/easy-web-seckill-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/easy-web-seckill-provider1/easy-web-seckill-provider1.iml" filepath="$PROJECT_DIR$/easy-web-seckill-provider1/easy-web-seckill-provider1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/easy-web-seckill-provider2/easy-web-seckill-provider2.iml" filepath="$PROJECT_DIR$/easy-web-seckill-provider2/easy-web-seckill-provider2.iml" />
       <module fileurl="file://$PROJECT_DIR$/easy-zuul/easy-zuul.iml" filepath="$PROJECT_DIR$/easy-zuul/easy-zuul.iml" />
     </modules>
   </component>

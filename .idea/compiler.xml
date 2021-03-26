@@ -16,6 +16,9 @@
         <module name="easy-web-banner-consumer" />
         <module name="easy-web-banner-provider1" />
         <module name="easy-web-banner-provider2" />
+        <module name="easy-web-seckill-consumer" />
+        <module name="easy-web-seckill-provider1" />
+        <module name="easy-web-seckill-provider2" />
         <module name="easy-zuul" />
       </profile>
     </annotationProcessing>
@@ -30,6 +33,9 @@
       <module name="easy-web-banner-consumer" target="1.8" />
       <module name="easy-web-banner-provider1" target="1.8" />
       <module name="easy-web-banner-provider2" target="1.8" />
+      <module name="easy-web-seckill-consumer" target="1.8" />
+      <module name="easy-web-seckill-provider1" target="1.8" />
+      <module name="easy-web-seckill-provider2" target="1.8" />
       <module name="easy-zuul" target="1.8" />
       <module name="easyeureka2" target="1.8" />
     </bytecodeTargetLevel>
