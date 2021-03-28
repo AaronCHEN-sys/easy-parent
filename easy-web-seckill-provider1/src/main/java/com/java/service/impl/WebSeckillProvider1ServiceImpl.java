@@ -69,6 +69,7 @@ public class WebSeckillProvider1ServiceImpl implements com.java.service.WebSecki
             }
         } else {
             //商品已经被秒杀完
+            
             throw new SeckillException("商品已经被秒杀完！");
         }
     }
