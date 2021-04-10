@@ -47,6 +47,8 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.3" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-tomcat:2.0.1.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:8.5.29" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:8.5.29" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:8.5.29" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate.validator:hibernate-validator:6.0.9.Final" level="project" />
     <orderEntry type="library" name="Maven: javax.validation:validation-api:2.0.1.Final" level="project" />
@@ -80,12 +82,6 @@
     <orderEntry type="library" name="Maven: io.micrometer:micrometer-core:1.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.hdrhistogram:HdrHistogram:2.1.10" level="project" />
     <orderEntry type="library" name="Maven: org.latencyutils:LatencyUtils:2.0.3" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-jasper:8.5.29" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:8.5.29" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-annotations-api:8.5.29" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:8.5.29" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.jdt:ecj:3.12.3" level="project" />
-    <orderEntry type="library" name="Maven: javax.servlet:jstl:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-devtools:2.0.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.0.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.0.1.RELEASE" level="project" />
@@ -96,6 +92,7 @@
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:2.0.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.0.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-oxm:5.0.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context-support:5.0.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: io.lettuce:lettuce-core:5.0.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:3.1.6.RELEASE" level="project" />
@@ -118,6 +115,8 @@
     <orderEntry type="library" name="Maven: org.bouncycastle:bcpkix-jdk15on:1.56" level="project" />
     <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15on:1.56" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-netflix-eureka-server:2.0.0.RC1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-freemarker:2.1.3.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.28" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-netflix-core:2.0.0.RC1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.0.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.8.13" level="project" />
@@ -184,8 +183,5 @@
     <orderEntry type="library" name="Maven: io.reactivex:rxjava:1.3.8" level="project" />
     <orderEntry type="library" name="Maven: com.netflix.ribbon:ribbon-eureka:2.2.5" level="project" />
     <orderEntry type="module" module-name="easy-commons" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-freemarker:2.1.3.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.28" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-context-support:5.0.5.RELEASE" level="project" />
   </component>
 </module>

@@ -54,6 +54,10 @@ public class UserController {
         }
     }
 
+    public static void main(String[] args) throws Exception {
+        System.out.println(MD5Tool.finalMD5("12345678"));
+    }
+
     /**
      * 根据用户名获取对应的权限
      *

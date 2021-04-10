@@ -67,10 +67,17 @@ public interface FrontWebMenuMapper {
     int updateSeckillGoodsStatusById(@Param("seckillStatus") String seckillStatus, @Param("seckillId") Long seckillId);
 
     /**
-     * 查询寂静结束秒杀的商品信息
+     * 查询即将结束秒杀的商品信息
      *
      * @return
      */
     List<Map<String, Object>> selectSeckilledGoods();
+
+    /**
+     * 查询即将开始秒杀和正在秒杀的商品信息
+     *
+     * @return
+     */
+    List<Map<String, Object>> selectSeckillGoodsDetails();
 
 }

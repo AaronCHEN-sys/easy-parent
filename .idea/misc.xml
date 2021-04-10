@@ -5,6 +5,7 @@
     <file type="web" url="file://$PROJECT_DIR$/easy-web-banner-consumer" />
     <file type="web" url="file://$PROJECT_DIR$/easy-web-banner-provider1" />
     <file type="web" url="file://$PROJECT_DIR$/easy-web-banner-provider2" />
+    <file type="web" url="file://$PROJECT_DIR$/easy-web-seckill-consumer" />
     <file type="web" url="file://$PROJECT_DIR$/easy-web-seckill-provider1" />
     <file type="web" url="file://$PROJECT_DIR$/easy-web-seckill-provider2" />
   </component>

@@ -14,6 +14,11 @@
     <version>1.0-SNAPSHOT</version>
     <dependencies>
 
+        <!--Eureka客户端-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
         <!--web启动器-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -29,7 +34,11 @@
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
         </dependency>
-
+        <!-- 分页助手启动器 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+        </dependency>
         <!-- mysql驱动 -->
         <dependency>
             <groupId>mysql</groupId>
@@ -39,7 +48,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-
         <!--解析servlet/jsp-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
@@ -57,34 +65,42 @@
             <optional>true</optional>
             <!--<scope>provided</scope>-->
         </dependency>
-
+        <!--引入lombok-->
         <dependency>
-            <groupId>p6spy</groupId>
-            <artifactId>p6spy</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
-
-        <!--引入Redis-->
+        <!--fastDFS服务器相关依赖-->
+        <dependency>
+            <groupId>com.github.tobato</groupId>
+            <artifactId>fastdfs-client</artifactId>
+            <version>1.25.4-RELEASE</version>
+            <type>pom</type>
+        </dependency>
+        <!--引入redis缓存-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
         </dependency>
-
-        <!--引入自定义工具类-->
+        <!--引入自定义工具类jar-->
         <dependency>
-            <groupId>com.java.easy-commons</groupId>
-            <artifactId>easy-commons</artifactId>
+            <groupId>com.java.eb-commons</groupId>
+            <artifactId>eb-commons</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
         <!--引入freemaker-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+        <!--Springboot的junit测试-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
     </dependencies>

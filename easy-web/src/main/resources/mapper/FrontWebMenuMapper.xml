@@ -50,12 +50,25 @@
     UPDATE web_goods_seckill SET seckill_status=#{seckillStatus} WHERE id=#{seckillId}
     </update>
 
-    <!--查询寂静结束秒杀的商品信息-->
+    <!--查询即将结束秒杀的商品信息-->
     <select id="selectSeckilledGoods" resultType="Map">
         SELECT id,goods_id,seckill_number,seckill_price,
         DATE_FORMAT(start_time,'%Y-%m-%d %H:%i:%s') start_time,DATE_FORMAT(end_time,'%Y-%m-%d %H:%i:%s') end_time,
         seckill_status,seckill_href
         FROM web_goods_seckill WHERE end_time &lt;=NOW() AND seckill_status='1'
+    </select>
+
+    <!--查询即将开始秒杀和正在秒杀的商品信息-->
+    <select id="selectSeckillGoodsDetails" resultType="Map">
+        SELECT wgs.id seckillId,wgs.goods_id,wgs.seckill_number,wgs.seckill_price,
+        DATE_FORMAT(start_time,'%Y-%m-%d %H:%i:%s') start_time,
+        DATE_FORMAT(end_time,'%Y-%m-%d %H:%i:%s') end_time,
+        wgs.seckill_status,wgs.seckill_href seckillHref,wgd.id goodsId,wgd.title,
+        wgd.sub_title,wgd.price,wgd.color,wgd.model,wgd.remaining,wgd.href goodsHref,
+        DATE_FORMAT(last_update_time,'%Y-%m-%d %H:%i:%s') last_update_time
+        FROM web_goods_seckill wgs INNER JOIN web_goods_details wgd
+        ON wgs.goods_id=wgd.id
+        WHERE wgs.seckill_status != '2'
     </select>
 
 </mapper>

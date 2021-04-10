@@ -1,8 +1,8 @@
 package com.java.service.impl;
 
 import com.java.exceptions.SeckillException;
-import com.java.mapper.WebSeckillProvider1Mapper;
-import com.java.service.WebSeckillProvider1Service;
+import com.java.mapper.WebSeckillProvider2Mapper;
+import com.java.service.WebSeckillProvider2Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -13,28 +13,30 @@ import java.util.Map;
 
 /**
  * Description:	   <br/>
- * Date:     2021/03/26 21:28 <br/>
+ * Date:     2021/03/28 20:52 <br/>
  *
  * @author Aaron CHEN
  * @see
  */
 @Service
-public class WebSeckillProvider1ServiceImpl implements WebSeckillProvider1Service {
+public class WebSeckillProvider2ServiceImpl implements WebSeckillProvider2Service {
 
     @Autowired
-    private WebSeckillProvider1Mapper webSeckillProvider1Mapper;
+    private WebSeckillProvider2Mapper webSeckillProvider2Mapper;
 
     @Autowired
     private RedisTemplate redisTemplate;
 
     @Override
     public void doSeckillStep(Long seckillId, Long userId) throws SeckillException {
+
         //秒杀主键id为空
         if (seckillId == null) {
             throw new SeckillException("秒杀的商品不存在!");
         }
+
         //1.判断商品是否已经处于秒杀状态
-        Map<String, Object> SeckillGoodsMap = webSeckillProvider1Mapper.selectSeckillGoodsBySeckillId(seckillId);
+        Map<String, Object> SeckillGoodsMap = webSeckillProvider2Mapper.selectSeckillGoodsBySeckillId(seckillId);
         String seckillStatus = (String) SeckillGoodsMap.get("seckill_status");
 
         if ("0".equals(seckillStatus)) {
@@ -64,7 +66,7 @@ public class WebSeckillProvider1ServiceImpl implements WebSeckillProvider1Servic
                 throw new SeckillException("不能重复秒杀该商品！");
             } else {
                 //当前用户未秒杀过该商品，秒杀成功
-                System.out.println("WebSeckillProvider1ServiceImpl-----user:" + userId + ",秒杀成功！");
+                System.out.println("WebSeckillProvider2ServiceImpl-----user:" + userId + ",秒杀成功！");
                 //将当前成功秒杀商品的用户主键id存放到Redis数据库
                 setOperations.add("seckill_users_" + seckillId, userId);
             }
@@ -73,5 +75,4 @@ public class WebSeckillProvider1ServiceImpl implements WebSeckillProvider1Servic
             throw new SeckillException("商品已经被秒杀完！");
         }
     }
-
 }

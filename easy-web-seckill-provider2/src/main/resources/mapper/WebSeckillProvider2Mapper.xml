@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.java.mapper.WebSeckillProvider2Mapper">
+
+    <!--根据秒杀主键id查询秒杀商品信息-->
+    <select id="selectSeckillGoodsBySeckillId" resultType="Map">
+        SELECT id,goods_id,seckill_number,seckill_price,
+        DATE_FORMAT(start_time,'%Y-%m-%d %H:%i:%s') start_time,DATE_FORMAT(end_time,'%Y-%m-%d %H:%i:%s') end_time,
+        seckill_status,seckill_href
+        FROM web_goods_seckill
+        WHERE id=#{seckillId}
+    </select>
+
+</mapper>

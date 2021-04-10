@@ -1,7 +1,7 @@
 package com.java.controller;
 
 import com.java.exceptions.SeckillException;
-import com.java.service.WebSeckillProvider1Service;
+import com.java.service.WebSeckillProvider2Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,16 +13,16 @@ import java.util.Map;
 
 /**
  * Description:	   <br/>
- * Date:     2021/03/26 21:20 <br/>
+ * Date:     2021/03/28 20:54 <br/>
  *
  * @author Aaron CHEN
  * @see
  */
 @Controller
-public class WebSeckillProvider1Controller {
+public class WebSeckillProvider2Controller {
 
     @Autowired
-    private WebSeckillProvider1Service webSeckillProvider1Service;
+    private WebSeckillProvider2Service webSeckillProvider2Service;
 
     /**
      * 秒杀步骤二
@@ -36,7 +36,7 @@ public class WebSeckillProvider1Controller {
     public Map<String, Object> processSeckill(@PathVariable(name = "seckillId") Long seckillId, @PathVariable(name = "userId") Long userId) {
         Map<String, Object> resultMap = new HashMap<>();
         try {
-            webSeckillProvider1Service.doSeckillStep(seckillId, userId);
+            webSeckillProvider2Service.doSeckillStep(seckillId, userId);
             //秒杀成功
             resultMap.put("status", "0");
             return resultMap;
@@ -48,4 +48,5 @@ public class WebSeckillProvider1Controller {
             return resultMap;
         }
     }
+
 }

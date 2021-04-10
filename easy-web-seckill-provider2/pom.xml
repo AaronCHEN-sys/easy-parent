@@ -41,16 +41,6 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!--解析servlet/jsp-->
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
-            <!--<scope>provided</scope>-->
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-        </dependency>
         <!-- 热部署 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -80,12 +70,6 @@
             <groupId>com.java.easy-commons</groupId>
             <artifactId>easy-commons</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <!--引入freemaker-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
 
     </dependencies>

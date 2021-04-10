@@ -42,6 +42,13 @@ public interface FrontWebMenuService {
      * 秒杀结束
      */
     void processSeckillwhenCompleted();
+
+    /**
+     * 查询即将开始秒杀和正在秒杀的商品信息, 包含图片地址信息
+     *
+     * @return
+     */
+    List<Map<String, Object>> findSeckillGoodsDetail();
 }
 
 

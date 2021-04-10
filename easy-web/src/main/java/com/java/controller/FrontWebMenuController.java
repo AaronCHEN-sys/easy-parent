@@ -136,6 +136,10 @@ public class FrontWebMenuController {
         //封装轮播图片
         List<Map<String, Object>> bannerList = restTemplate.getForObject("http://easy-web-banner-provider/getWebBanner.do", List.class);
         model.addAttribute("bannerList", bannerList);
+        //查询即将开始秒杀和正在秒杀的商品信息, 包含图片地址信息
+        List<Map<String, Object>> seckillGoodsDetailList = frontWebMenuService.findSeckillGoodsDetail();
+        model.addAttribute("seckillGoodsDetailList", seckillGoodsDetailList);
         return "/pages/Index.jsp";
     }
+
 }

@@ -111,11 +111,26 @@ public class FrontWebMenuServiceImpl implements FrontWebMenuService {
             //获取秒杀商品的秒杀主键
             Long seckillId = (Long) seckilledGoodsMap.get("id");
             //1.删除Redis中空的秒杀商品集合
-            redisTemplate.delete("seckill_goods_" + seckillId);
+            redisTemplate.delete("seckill_goods_" +
+                    "" + seckillId);
             //2.修改产品状态
             frontWebMenuMapper.updateSeckillGoodsStatusById("2", seckillId);
         }
 
+    }
+
+    @Override
+    public List<Map<String, Object>> findSeckillGoodsDetail() {
+
+        //1.查询即将开始秒杀和正在秒杀的商品信息
+        List<Map<String, Object>> seckillGoodsDetailList = frontWebMenuMapper.selectSeckillGoodsDetails();
+        //2.根据商品主键id获取每个商品的图片地址信息
+        for (int i = 0; i < seckillGoodsDetailList.size(); i++) {
+            Long goodsId = (Long) seckillGoodsDetailList.get(i).get("goodsId");
+            List<String> imageUrlList = frontWebMenuMapper.selectImageUrlByGoodsId(goodsId);
+            seckillGoodsDetailList.get(i).put("imageUrlList", imageUrlList);
+        }
+        return seckillGoodsDetailList;
     }
 
 

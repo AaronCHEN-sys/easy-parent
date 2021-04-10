@@ -679,60 +679,82 @@
             </div>
         </div>
         <div class="sell_right">
-            <div class="sell_1">
-                <div class="s_img"><a href="#"><img src="<%=basePath %>/static/images/tm_1.jpg" width="185"
-                                                    height="155"/></a></div>
-                <div class="s_price">￥<span>89</span></div>
-                <div class="s_name">
-                    <h2><a href="#">沙宣洗发水</a></h2>
-                    倒计时：<span>1200</span> 时 <span>30</span> 分 <span>28</span> 秒
-                </div>
-            </div>
-            <div class="sell_2">
-                <div class="s_img"><a href="#"><img src="<%=basePath %>/static/images/tm_2.jpg" width="185"
-                                                    height="155"/></a></div>
-                <div class="s_price">￥<span>289</span></div>
-                <div class="s_name">
-                    <h2><a href="#">德芙巧克力</a></h2>
-                    倒计时：<span>1200</span> 时 <span>30</span> 分 <span>28</span> 秒
-                </div>
-            </div>
-            <div class="sell_b1">
-                <div class="sb_img"><a href="#"><img src="<%=basePath %>/static/images/tm_b1.jpg" width="242"
-                                                     height="356"/></a></div>
-                <div class="s_price">￥<span>289</span></div>
-                <div class="s_name">
-                    <h2><a href="#">东北大米</a></h2>
-                    倒计时：<span>1200</span> 时 <span>30</span> 分 <span>28</span> 秒
-                </div>
-            </div>
-            <div class="sell_3">
-                <div class="s_img"><a href="#"><img src="<%=basePath %>/static/images/tm_3.jpg" width="185"
-                                                    height="155"/></a></div>
-                <div class="s_price">￥<span>289</span></div>
-                <div class="s_name">
-                    <h2><a href="#">迪奥香水</a></h2>
-                    倒计时：<span>1200</span> 时 <span>30</span> 分 <span>28</span> 秒
-                </div>
-            </div>
-            <div class="sell_4">
-                <div class="s_img"><a href="#"><img src="<%=basePath %>/static/images/tm_4.jpg" width="185"
-                                                    height="155"/></a></div>
-                <div class="s_price">￥<span>289</span></div>
-                <div class="s_name">
-                    <h2><a href="#">美妆</a></h2>
-                    倒计时：<span>1200</span> 时 <span>30</span> 分 <span>28</span> 秒
-                </div>
-            </div>
-            <div class="sell_b2">
-                <div class="sb_img"><a href="#"><img src="<%=basePath %>/static/images/tm_b2.jpg" width="242"
-                                                     height="356"/></a></div>
-                <div class="s_price">￥<span>289</span></div>
-                <div class="s_name">
-                    <h2><a href="#">美妆</a></h2>
-                    倒计时：<span>1200</span> 时 <span>30</span> 分 <span>28</span> 秒
-                </div>
-            </div>
+
+            <%--左边--%>
+            <c:forEach items="${seckillGoodsDetailList}" var="map" varStatus="num">
+                <c:if test="${num.count+1>=1 and num.count+1<=2}">
+                    <div class="sell_${num.count+1}">
+                        <div class="s_img">
+                            <a href="#">
+                                <img src="${map.imageUrlList[0]}" width="185" height="155"/>
+                            </a>
+                        </div>
+                        <div class="s_price">
+                            ￥<span style="text-decoration: line-through;">${map.price}</span>
+                            ￥<span style="color: red;">${map.seckill_price}</span>
+                        </div>
+                        <div class="s_name">
+                            <h2><a href="#">${map.title}</a></h2>
+                            倒计时：<span>1200</span> 时 <span>30</span> 分 <span>28</span> 秒
+                        </div>
+                    </div>
+                </c:if>
+                <c:if test="${num.count+1==3}">
+                    <div class="sell_b1">
+                        <div class="sb_img">
+                            <a href="#">
+                                <img src="${map.imageUrlList[0]}" width="242" height="356"/>
+                            </a>
+                        </div>
+                        <div class="s_price">
+                            ￥<span style="text-decoration: line-through;">${map.price}</span>
+                            ￥<span style="color: red;">${map.seckill_price}</span>
+                        </div>
+                        <div class="s_name">
+                            <h2><a href="#">${map.title}</a></h2>
+                            倒计时：<span>1200</span> 时 <span>30</span> 分 <span>28</span> 秒
+                        </div>
+                    </div>
+                </c:if>
+            </c:forEach>
+
+            <%--右边--%>
+            <c:forEach items="${seckillGoodsDetailList}" var="map" varStatus="num">
+                <c:if test="${num.count+1>=4 and num.count+1<=5}">
+                    <div class="sell_${num.count}">
+                        <div class="s_img">
+                            <a href="#">
+                                <img src="${map.imageUrlList[0]}" width="185" height="155"/>
+                            </a>
+                        </div>
+                        <div class="s_price">
+                            ￥<span style="text-decoration: line-through;">${map.price}</span>
+                            ￥<span style="color: red;">${map.seckill_price}</span>
+                        </div>
+                        <div class="s_name">
+                            <h2><a href="#">${map.title}</a></h2>
+                            倒计时：<span>1200</span> 时 <span>30</span> 分 <span>28</span> 秒
+                        </div>
+                    </div>
+                </c:if>
+                <c:if test="${num.count+1==6}">
+                    <div class="sell_b2">
+                        <div class="sb_img">
+                            <a href="#">
+                                <img src="${map.imageUrlList[0]}" width="242" height="356"/>
+                            </a>
+                        </div>
+                        <div class="s_price">
+                            ￥<span style="text-decoration: line-through;">${map.price}</span>
+                            ￥<span style="color: red;">${map.seckill_price}</span>
+                        </div>
+                        <div class="s_name">
+                            <h2><a href="#">${map.title}</a></h2>
+                            倒计时：<span>1200</span> 时 <span>30</span> 分 <span>28</span> 秒
+                        </div>
+                    </div>
+                </c:if>
+            </c:forEach>
         </div>
     </div>
     <!--End 限时特卖 End-->
