@@ -53,6 +53,8 @@
         <actuator.version>2.0.0.RELEASE</actuator.version>
         <ribbon.version>2.0.0.RELEASE</ribbon.version>
         <springboot.freemarker.version>2.1.3.RELEASE</springboot.freemarker.version>
+        <springboot.test.version>2.1.3.RELEASE</springboot.test.version>
+        <rabbitMQ.version>2.0.3.RELEASE</rabbitMQ.version>
     </properties>
 
     <dependencyManagement>
@@ -154,18 +156,23 @@
                 <version>${actuator.version}</version>
             </dependency>
 
-            <!--引入ribbon负载均衡-->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-                <version>${ribbon.version}</version>
-            </dependency>
-
             <!--引入freemaker-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-freemarker</artifactId>
                 <version>${springboot.freemarker.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter-test</artifactId>
+                <version>${springboot.test.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
+                <version>${rabbitMQ.version}</version>
             </dependency>
 
         </dependencies>

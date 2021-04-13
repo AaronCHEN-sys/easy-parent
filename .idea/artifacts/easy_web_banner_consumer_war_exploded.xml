@@ -101,7 +101,7 @@
           <element id="library" level="project" name="Maven: org.springframework.cloud:spring-cloud-netflix-archaius:2.0.0.RC1" />
           <element id="library" level="project" name="Maven: com.netflix.ribbon:ribbon-eureka:2.2.5" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
-          <element id="library" level="project" name="Maven: org.springframework.cloud:spring-cloud-starter-netflix-ribbon:2.0.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.cloud:spring-cloud-starter-netflix-ribbon:2.0.0.RC1" />
           <element id="library" level="project" name="Maven: org.springframework.cloud:spring-cloud-netflix-ribbon:2.0.0.RC1" />
           <element id="library" level="project" name="Maven: com.netflix.ribbon:ribbon:2.2.5" />
           <element id="library" level="project" name="Maven: com.netflix.ribbon:ribbon-transport:2.2.5" />

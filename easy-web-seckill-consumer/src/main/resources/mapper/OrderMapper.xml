@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.java.mapper.OrderMapper">
+
+    <!--添加订单数据-->
+    <insert id="insertOrder" parameterType="Map">
+        INSERT INTO web_order VALUES(NULL,#{orderNumber},#{userId},"0",#{orderAmount})
+    </insert>
+
+    <!--根据秒杀主键id查询秒杀价格-->
+    <select id="selectSeckillId" parameterType="Long" resultType="Float">
+        select seckill_price from web_goods_seckill where id=#{seckillId}
+    </select>
+</mapper>

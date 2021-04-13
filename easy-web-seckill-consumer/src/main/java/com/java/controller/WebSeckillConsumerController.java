@@ -8,6 +8,7 @@ package com.java.controller;
  * @see
  */
 
+import com.java.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
@@ -35,6 +36,9 @@ public class WebSeckillConsumerController {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private OrderService orderService;
+
     /**
      * 开始秒杀
      *
@@ -45,7 +49,13 @@ public class WebSeckillConsumerController {
     @RequestMapping("/getSeckillByConsumer.do")
     @ResponseBody
     public Map<String, Object> getBannerByConsumer(Long seckillId, Long userId) {
+        //1.处理秒杀模块
         Map<String, Object> resultMap = restTemplate.getForObject("http://easy-web-seckill-provider/processSeckill.do/" + seckillId + "/" + userId, Map.class);
+        //2.抢购成功时, 往消息队列中存放数据: 订单编号、用户唯一标识符(userId)
+        if ("0".equals(resultMap.get("status"))) {
+            String orderNo = orderService.sendDataToRabbitMQ(userId, seckillId);
+            resultMap.put("orderNo", orderNo);
+        }
         return resultMap;
     }
 
