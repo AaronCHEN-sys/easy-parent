@@ -30,4 +30,12 @@ public interface OrderMapper {
      * @return
      */
     Float selectSeckillId(@Param("seckillId") Long seckillId);
+
+    /**
+     * 结算时, 根据订单编号查询是否存在订单
+     *
+     * @param orderNo 订单编号
+     * @return
+     */
+    int selectCountOrder(@Param("orderNo") String orderNo);
 }

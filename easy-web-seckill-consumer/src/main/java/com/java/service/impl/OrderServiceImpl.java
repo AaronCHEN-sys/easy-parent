@@ -43,6 +43,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional(readOnly = false)
     @Override
     public void saveOrder(Map<String, Object> parameterMap) {
+        System.out.println("saveOrder");
         //1.查询出秒杀价格
         Float seckillPrice = orderMapper.selectSeckillId((Long) parameterMap.get("seckillId"));
         //2.将数据存放到数据库
@@ -50,4 +51,11 @@ public class OrderServiceImpl implements OrderService {
         orderMapper.insertOrder(parameterMap);
     }
 
+    @Override
+    public boolean checkOrder(String orderNo) {
+        System.out.println("checkOrder");
+
+        int i = orderMapper.selectCountOrder(orderNo);
+        return i == 1;
+    }
 }

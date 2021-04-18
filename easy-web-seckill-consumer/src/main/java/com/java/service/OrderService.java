@@ -23,6 +23,19 @@ public interface OrderService {
      */
     String sendDataToRabbitMQ(Long userId, Long seckillId);
 
+    /**
+     * 保存订单信息
+     *
+     * @param parameterMap
+     */
     @Transactional(readOnly = false)
     void saveOrder(Map<String, Object> parameterMap);
+
+    /**
+     * 结算时, 根据订单编号查询是否存在订单
+     *
+     * @param orderNo
+     * @return
+     */
+    boolean checkOrder(String orderNo);
 }

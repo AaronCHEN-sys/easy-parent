@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.util.Map;
@@ -20,6 +22,7 @@ import java.util.Map;
  * @see
  */
 @Component
+@RequestMapping("/order")
 public class OrderController {
 
     @Autowired
@@ -37,10 +40,10 @@ public class OrderController {
 
         try {
             //1、对接支付宝/微信
-            Thread.sleep(5000);
+            Thread.sleep(15000);
             //2、从消息队列("queue-order")取出dataMap数据
-//            String orderNo = (String) dataMap.get("orderNo");
-//            Long userId = (Long) dataMap.get("userId");
+            //String orderNo = (String) dataMap.get("orderNo");
+            //Long userId = (Long) dataMap.get("userId");
             //3、将dataMap等数据保存到数据库的订单表中--->状态已经创建
             orderService.saveOrder(dataMap);
             //4、手动确认正确的从消息队列中取出数据，并且处理完毕
@@ -51,6 +54,18 @@ public class OrderController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 确认是否已经生成订单信息
+     *
+     * @param orderNo 订单编号
+     * @return
+     */
+    @RequestMapping("/confirmOrder.do")
+    @ResponseBody
+    public boolean confirmOrder(String orderNo) {
+        return orderService.checkOrder(orderNo);
     }
 
 }

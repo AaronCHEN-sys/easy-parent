@@ -7,11 +7,17 @@
 
     <!--添加订单数据-->
     <insert id="insertOrder" parameterType="Map">
-        INSERT INTO web_order VALUES(NULL,#{orderNumber},#{userId},"0",#{orderAmount})
+        INSERT INTO web_order VALUES(NULL,#{orderNo},#{userId},"0",#{orderAmount})
     </insert>
 
     <!--根据秒杀主键id查询秒杀价格-->
     <select id="selectSeckillId" parameterType="Long" resultType="Float">
         select seckill_price from web_goods_seckill where id=#{seckillId}
     </select>
+
+    <!--结算时, 根据订单编号查询是否存在订单-->
+    <select id="selectCountOrder" resultType="Integer">
+        SELECT COUNT(*) FROM web_order WHERE order_number=#{orderNo}
+    </select>
+
 </mapper>

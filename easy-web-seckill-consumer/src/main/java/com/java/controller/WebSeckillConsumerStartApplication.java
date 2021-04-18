@@ -3,6 +3,7 @@ package com.java.controller;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
@@ -19,6 +20,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 //启用负载均衡客户端
 @EnableDiscoveryClient
 @MapperScan(basePackages = "com.java.mapper")
+//开启过滤器包扫描
+@ServletComponentScan(basePackages = "com.java.filters")
 public class WebSeckillConsumerStartApplication {
 
     public static void main(String[] args) {
