@@ -31,7 +31,6 @@
             }
         });
     }
-
     window.setInterval('aaa()', 2000);
 </script>
 </body>
