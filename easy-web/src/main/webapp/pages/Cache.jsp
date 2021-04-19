@@ -14,7 +14,7 @@
 <h1>正在结算中......</h1>
 <input type="hidden" name="orderNo" value="${param.orderNo}">
 <script type="text/javascript">
-    $(function () {
+    function aaa() {
         $.ajax({
             url: 'http://localhost:8092/order/confirmOrder.do',
             dataType: 'JSON',
@@ -26,11 +26,13 @@
                 if (rs) {
                     window.location.href = "http://localhost:8082/pages/CompleteSeckill.jsp";
                 } else {
-                    <%--window.location.href = "http://localhost:8082/pages/Cache.jsp?orderNo=${param.orderNo}";--%>
+                    window.location.href = "http://localhost:8082/pages/Cache.jsp?orderNo=${param.orderNo}";
                 }
             }
         });
-    });
+    }
+
+    window.setInterval('aaa()', 2000);
 </script>
 </body>
 </html>

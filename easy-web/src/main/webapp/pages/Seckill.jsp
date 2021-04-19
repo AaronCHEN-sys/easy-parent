@@ -20,8 +20,8 @@
                 dataType: 'JSON',
                 type: 'POST',
                 data: {
-                    'seckillId': 3,
-                    'userId': 6
+                    'seckillId': 1,
+                    'userId': 4
                 },
                 success: function (rs) {
                     var status = rs.status;
