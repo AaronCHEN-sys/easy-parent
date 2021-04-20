@@ -55,6 +55,7 @@
         <springboot.freemarker.version>2.1.3.RELEASE</springboot.freemarker.version>
         <springboot.test.version>2.1.3.RELEASE</springboot.test.version>
         <rabbitMQ.version>2.0.3.RELEASE</rabbitMQ.version>
+        <fastjson.version>1.2.9</fastjson.version>
     </properties>
 
     <dependencyManagement>
@@ -165,7 +166,7 @@
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-               <artifactId>spring-boot-starter-test</artifactId>
+                <artifactId>spring-boot-starter-test</artifactId>
                 <version>${springboot.test.version}</version>
             </dependency>
 
@@ -173,6 +174,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-amqp</artifactId>
                 <version>${rabbitMQ.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
 
         </dependencies>

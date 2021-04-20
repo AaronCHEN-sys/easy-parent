@@ -1,5 +1,8 @@
 package com.java.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.java.pojo.web.GoodsItem;
+import com.java.pojo.web.ShoppingCart;
 import com.java.service.FrontWebMenuService;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -7,23 +10,24 @@ import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SetOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.xml.soap.Detail;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Description:	   <br/>
@@ -52,6 +56,9 @@ public class FrontWebMenuController {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
 
     /**
@@ -140,6 +147,78 @@ public class FrontWebMenuController {
         List<Map<String, Object>> seckillGoodsDetailList = frontWebMenuService.findSeckillGoodsDetail();
         model.addAttribute("seckillGoodsDetailList", seckillGoodsDetailList);
         return "/pages/Index.jsp";
+    }
+
+    /**
+     * 添加商品至购物车
+     *
+     * @param goodsId
+     * @param count
+     * @param request
+     * @param response
+     * @param session
+     */
+    @RequestMapping("/addGoodsToShoppingCart.do")
+    public void addGoodsToShoppingCart(Long goodsId, Integer count, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+        ShoppingCart shoppingCart = null;
+
+        //获取cookies
+        Cookie[] cookies = request.getCookies();
+
+        if (cookies != null) {
+            //Cookie存在
+            for (int i = 0; i < cookies.length; i++) {
+                String cookieName = cookies[i].getName();
+                if ("easyBuyShoppingCart".equals(cookieName)) {
+                    String cookieValue = cookies[i].getValue();
+                    //将cookieValue字符串还原成ShoppingCart对象
+                    shoppingCart = JSON.parseObject(cookieValue, ShoppingCart.class);
+
+                    List<GoodsItem> goodsItemList = shoppingCart.getGoodsItemList();
+                    for (int j = 0; j < goodsItemList.size(); j++) {
+                        Long goodsIdTemp = goodsItemList.get(j).getGoodsId();
+                        //购物车中存在相同的商品
+                        if (goodsIdTemp == goodsId) {
+                            goodsItemList.get(j).setCount(goodsItemList.get(j).getCount() + count);
+                        } else {
+                            //购物车中不存在相同的商品
+                            GoodsItem goodsItem = new GoodsItem(goodsId, count);
+                            shoppingCart.getGoodsItemList().add(goodsItem);
+                        }
+                    }
+                } else {
+                    GoodsItem goodsItem = new GoodsItem(goodsId, count);
+                    shoppingCart = new ShoppingCart();
+                    shoppingCart.setGoodsItemList(Arrays.asList(goodsItem));
+                }
+            }
+        } else {
+            //Cookie不存在
+            GoodsItem goodsItem = new GoodsItem(goodsId, count);
+            shoppingCart = new ShoppingCart();
+            shoppingCart.setGoodsItemList(Arrays.asList(goodsItem));
+        }
+
+        String shoppingCartStringJSON = JSON.toJSONString(shoppingCart);
+
+        //判断用户是否已经登录
+        Object username = session.getAttribute("username");
+        if (username == null) {
+            //没有登录
+            Cookie cookie = new Cookie("easyBuyShoppingCart", shoppingCartStringJSON);
+            cookie.setMaxAge(24 * 60 * 60 * 7 + 8 * 60 * 60);
+            response.addCookie(cookie);
+        } else {
+            //已登录
+            //将数据添加到Redis数据库中
+            SetOperations setOperations = redisTemplate.opsForSet();
+            setOperations.add("easyBuyShoppingCart_" + username, shoppingCart);
+            //清空Cookie
+            Cookie cookie = new Cookie("easyBuyShoppingCart", "");
+            cookie.setMaxAge(-1);
+            response.addCookie(cookie);
+        }
     }
 
 }

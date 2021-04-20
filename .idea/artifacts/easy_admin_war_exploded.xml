@@ -168,10 +168,7 @@
           <element id="archive" name="easy-commons-1.0-SNAPSHOT.jar">
             <element id="module-output" name="easy-commons" />
           </element>
-          <element id="archive" name="easy-pojo-1.0-SNAPSHOT.jar">
-            <element id="module-output" name="easy-pojo" />
-          </element>
-          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.18.2" />
+          <element id="library" level="project" name="Maven: com.java.easy-parent:easy-pojo:1.0-SNAPSHOT" />
         </element>
       </element>
       <element id="directory" name="META-INF">
