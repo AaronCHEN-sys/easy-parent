@@ -27,6 +27,9 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.*;
 
 /**
@@ -159,21 +162,32 @@ public class FrontWebMenuController {
      * @param session
      */
     @RequestMapping("/addGoodsToShoppingCart.do")
-    public void addGoodsToShoppingCart(Long goodsId, Integer count, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+    public void addGoodsToShoppingCart(Long goodsId, Integer count, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws UnsupportedEncodingException {
 
         ShoppingCart shoppingCart = null;
 
         //获取cookies
         Cookie[] cookies = request.getCookies();
-
+        boolean flag = true;
         if (cookies != null) {
             //Cookie存在
+
             for (int i = 0; i < cookies.length; i++) {
                 String cookieName = cookies[i].getName();
                 if ("easyBuyShoppingCart".equals(cookieName)) {
+                    //找到了名称为easyBuyShoppingCart的Cookie
+                    flag = false;
+
                     String cookieValue = cookies[i].getValue();
+                    String cookieValueDecode = URLDecoder.decode(cookieValue, "UTF-8");
+
+                    //解密
+                    cookieValueDecode = cookieValueDecode.replaceAll("&123&", "count");
+                    cookieValueDecode = cookieValueDecode.replaceAll("&#456&", "goodsId");
+                    cookieValueDecode = cookieValueDecode.replaceAll("&@9527&", "goodsItemList");
+
                     //将cookieValue字符串还原成ShoppingCart对象
-                    shoppingCart = JSON.parseObject(cookieValue, ShoppingCart.class);
+                    shoppingCart = JSON.parseObject(cookieValueDecode, ShoppingCart.class);
 
                     List<GoodsItem> goodsItemList = shoppingCart.getGoodsItemList();
                     for (int j = 0; j < goodsItemList.size(); j++) {
@@ -187,11 +201,15 @@ public class FrontWebMenuController {
                             shoppingCart.getGoodsItemList().add(goodsItem);
                         }
                     }
-                } else {
-                    GoodsItem goodsItem = new GoodsItem(goodsId, count);
-                    shoppingCart = new ShoppingCart();
-                    shoppingCart.setGoodsItemList(Arrays.asList(goodsItem));
+                    //找到了名称为easyBuyShoppingCart的Cookie就终止循环
+                    break;
                 }
+            }
+            //经过for循环后,并没有在找到名称为easyBuyShoppingCart的Cookie
+            if (flag) {
+                GoodsItem goodsItem = new GoodsItem(goodsId, count);
+                shoppingCart = new ShoppingCart();
+                shoppingCart.setGoodsItemList(Arrays.asList(goodsItem));
             }
         } else {
             //Cookie不存在
@@ -201,12 +219,19 @@ public class FrontWebMenuController {
         }
 
         String shoppingCartStringJSON = JSON.toJSONString(shoppingCart);
+        //对数据进行编码
+        String shoppingCartStringJSONEncode = URLEncoder.encode(shoppingCartStringJSON, "UTF-8");
+
+        //加密
+        shoppingCartStringJSONEncode = shoppingCartStringJSONEncode.replaceAll("count", "&123&");
+        shoppingCartStringJSONEncode = shoppingCartStringJSONEncode.replaceAll("goodsId", "&#456&");
+        shoppingCartStringJSONEncode = shoppingCartStringJSONEncode.replaceAll("goodsItemList", "&@9527&");
 
         //判断用户是否已经登录
         Object username = session.getAttribute("username");
         if (username == null) {
             //没有登录
-            Cookie cookie = new Cookie("easyBuyShoppingCart", shoppingCartStringJSON);
+            Cookie cookie = new Cookie("easyBuyShoppingCart", shoppingCartStringJSONEncode);
             cookie.setMaxAge(24 * 60 * 60 * 7 + 8 * 60 * 60);
             response.addCookie(cookie);
         } else {
@@ -219,6 +244,13 @@ public class FrontWebMenuController {
             cookie.setMaxAge(-1);
             response.addCookie(cookie);
         }
+    }
+
+    @RequestMapping("/login.do")
+    @ResponseBody
+    public String login(HttpSession session) {
+        session.setAttribute("username", "Aaron");
+        return session.getAttribute("username").toString();
     }
 
 }
